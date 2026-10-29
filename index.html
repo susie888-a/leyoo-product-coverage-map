@@ -20,11 +20,11 @@
     .hero-copy{font-size:16px;line-height:1.7;color:var(--muted);max-width:850px}
     .cardx{background:var(--paper);border:1px solid rgba(21,35,31,.09);border-radius:24px;box-shadow:var(--shadow)}
     .metric{padding:18px 20px}.metric strong{display:block;font-size:30px;letter-spacing:-.04em}.metric span{font-size:12px;color:var(--muted)}
-    .legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted)}.legend i{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px}.legend .current{background:var(--teal)}.legend .opportunity{background:var(--orange)}.legend .route{display:inline-block;width:28px;height:0;border-top:2px dashed #78988d;margin-right:5px;vertical-align:middle}
+    .legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted)}.legend i{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px}.legend .current{background:var(--teal)}.legend .opportunity{background:var(--orange)}.legend .permit{background:#7b61a8}.legend .route{display:inline-block;width:28px;height:0;border-top:2px dashed #78988d;margin-right:5px;vertical-align:middle}
     .map-card{padding:14px;overflow:hidden}.map-wrap{background:#e8eee9;border-radius:18px;position:relative;min-height:660px;overflow:hidden}
     .map-wrap::after{content:"离线真实经纬度投影 · 不依赖外部地图瓦片 · 点击点位查看 Google Maps";position:absolute;right:18px;bottom:12px;z-index:5;color:rgba(21,35,31,.62);font-size:10px;letter-spacing:.04em;background:rgba(251,250,246,.86);padding:4px 7px;border-radius:6px}
     #offlineMap{width:100%;height:660px;border-radius:18px;display:block;background:#e8eee9}
-    .offline-bg{fill:#e8eee9}.offline-land{fill:#d7e4dc;stroke:#88a99c;stroke-width:1.4}.offline-grid{stroke:#b8cec3;stroke-width:1;opacity:.62}.offline-grid-label{font-size:11px;fill:#66857a}.offline-title{font-size:14px;font-weight:800;fill:#315f51}.offline-note{font-size:11px;fill:#66857a}.offline-route{fill:none;stroke:#6d998d;stroke-width:2.2;stroke-dasharray:8 7;opacity:.82}.offline-route.secondary{stroke:#a4b9ae;stroke-width:1.7;opacity:.78}.offline-marker{cursor:pointer}.offline-marker circle{stroke:#fff;stroke-width:2.5}.offline-marker.current circle{fill:var(--teal)}.offline-marker.opportunity circle{fill:var(--orange)}.offline-marker text{font-size:10px;font-weight:800;fill:#173c31;paint-order:stroke;stroke:#f7f4ea;stroke-width:3px;stroke-linejoin:round}.tooltip{pointer-events:auto}
+    .offline-bg{fill:#e8eee9}.offline-land{fill:#d7e4dc;stroke:#88a99c;stroke-width:1.4}.offline-grid{stroke:#b8cec3;stroke-width:1;opacity:.62}.offline-grid-label{font-size:11px;fill:#66857a}.offline-title{font-size:14px;font-weight:800;fill:#315f51}.offline-note{font-size:11px;fill:#66857a}.offline-route{fill:none;stroke:#6d998d;stroke-width:2.2;stroke-dasharray:8 7;opacity:.82}.offline-route.secondary{stroke:#a4b9ae;stroke-width:1.7;opacity:.78}.offline-route.permit{stroke:#7b61a8;stroke-width:2.1;stroke-dasharray:4 6;opacity:.86}.offline-marker{cursor:pointer}.offline-marker circle{stroke:#fff;stroke-width:2.5}.offline-marker.current circle{fill:var(--teal)}.offline-marker.opportunity circle{fill:var(--orange)}.offline-marker.permit circle{fill:#7b61a8}.offline-marker text{font-size:10px;font-weight:800;fill:#173c31;paint-order:stroke;stroke:#f7f4ea;stroke-width:3px;stroke-linejoin:round}.tooltip{pointer-events:auto}
     .side{padding:22px}.side h2{font-size:20px;letter-spacing:-.03em;margin:0 0 6px}.side p{font-size:13px;line-height:1.65;color:var(--muted)}
     .cluster{padding:14px 0;border-top:1px solid var(--line)}.cluster:first-of-type{border-top:0}.cluster-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.cluster h3{margin:0;font-size:14px}.cluster-count{font-size:11px;background:#e6f0eb;color:var(--green);padding:4px 8px;border-radius:999px;font-weight:750}.cluster ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:12px;line-height:1.65}.cluster a,.source a{color:var(--green);text-decoration:underline;text-underline-offset:3px}
     .op-card{padding:16px 18px;border-left:4px solid var(--orange);background:#fff8f0;border-radius:16px;margin-top:12px}.op-card h3{margin:0 0 4px;font-size:15px}.op-card p{margin:0;color:#6c5c4f;font-size:12px;line-height:1.6}.op-card a{display:inline-block;margin-top:8px;color:#98431f;font-size:12px;text-decoration:underline}
@@ -50,8 +50,8 @@
     </header>
 
     <div class="toolbar">
-      <div class="legend"><span><i class="current"></i>现有产品覆盖</span><span><i class="opportunity"></i>建议开发方向</span><span><b class="route"></b>产品路线 / 区域联动</span></div>
-      <div class="btns"><button class="active" data-filter="all">全部</button><button data-filter="current">只看现有</button><button data-filter="opportunity">只看机会</button></div>
+      <div class="legend"><span><i class="current"></i>现有产品覆盖</span><span><i class="opportunity"></i>建议开发方向</span><span><i class="permit"></i>DOC许可潜力</span><span><b class="route"></b>产品路线 / 区域联动</span></div>
+      <div class="btns"><button class="active" data-filter="all">全部</button><button data-filter="current">只看现有</button><button data-filter="opportunity">只看机会</button><button data-filter="permit">只看DOC许可</button></div>
     </div>
 
     <section class="grid-main grid grid-cols-1 lg:grid-cols-[minmax(0,1.55fr)_minmax(330px,.75fr)] gap-4">
@@ -72,11 +72,12 @@
 
       <aside class="cardx side">
         <h2>奥克兰与皇后镇两大基点辐射</h2>
-        <p>地图点位全部按真实纬度/经度落在 OpenStreetMap 底图上；点击点位先查看产品信息，再通过弹窗链接打开 Google Maps 核验具体集合地址。</p>
+        <p>地图点位全部按真实纬度/经度投影到内嵌离线海岸线；新增紫色点位来自许可截图中的 DOC 步道候选。点击点位先查看许可条件和产品化方向，再通过弹窗链接打开 Google Maps 核验具体入口。</p>
         <div class="cluster"><div class="cluster-head"><h3>01 · 奥克兰基点：城市及近郊</h3><span class="cluster-count">北岛入口</span></div><ul><li>你好奥克兰、激流岛、奥克兰西海岸</li><li>科罗曼德、怀托摩、霍比屯 / Matamata</li><li>适合一日游、包车和城市游客当天往返</li></ul></div>
         <div class="cluster"><div class="cluster-head"><h3>02 · 奥克兰基点：北岛中部产品带</h3><span class="cluster-count">2—3日联动</span></div><ul><li>罗托鲁瓦已有火山、温泉、毛利文化和轻探险产品</li><li>北岛3日游已经覆盖霍比屯、Tarawera、Waimangu、陶波湖区</li><li>下一步不是从零开发 Taupō，而是做独立一日 SKU、湖区深度体验与 Tauranga / Mount Maunganui 延伸</li></ul></div>
         <div class="cluster"><div class="cluster-head"><h3>03 · 皇后镇基点：格林诺奇—峡湾</h3><span class="cluster-count">高客单主轴</span></div><ul><li>Heliworks 多档直升机、雪山与冰川落地</li><li>Earnslaw Burn、格林诺奇、Dart River</li><li>米佛峡湾已有舒享包车和巡游船票，Te Anau 可作为承接节点</li></ul></div>
         <div class="cluster"><div class="cluster-head"><h3>04 · 皇后镇基点：瓦纳卡—库克山—蒂卡波</h3><span class="cluster-count">户外延伸带</span></div><ul><li>瓦纳卡承接 Rob Roy、Mou Waho、Cardrona 等户外产品</li><li>库克山和蒂卡波已有高价值冰川、观星内容</li><li>两地更适合南岛多日联动，不应包装成皇后镇轻松一日辐射</li></ul></div>
+        <div class="cluster"><div class="cluster-head"><h3>05 · DOC许可候选：步道产品池</h3><span class="cluster-count">紫色点位</span></div><ul><li>许可表覆盖 Wanaka、Wakatipu、Te Anau、Rakiura、West Coast、Aoraki、Arthur’s Pass、Tekapo / Pukaki</li><li>优先从皇后镇近郊低门槛步道、Te Anau—Milford公路节点和 Aoraki 冰川湖泊内容做 SKU 分层</li><li>许可人数/频次已放进点位弹窗，但仍需逐条核对开放状态、季节条件和最终运营手续</li></ul></div>
         <div class="op-card"><h3>最值得优先补齐的方向</h3><p>陶波已经被北岛3日游覆盖，下一步重点是把现有线路拆出独立一日 SKU、火山湖泊深度体验和更清晰的住宿承接；同时推进奥克兰东南的 Tauranga / Mount Maunganui，以及皇后镇近郊低门槛自然体验和 Te Anau 承接线。</p></div>
       </aside>
     </section>
@@ -110,6 +111,7 @@
         <li>数据来源：飞书 Base「乐悠产品推进计划管理-OTA」的「产品任务进度」表（33条）和「产品门票信息」表（47条）。</li>
         <li>区域归类依据：产品名称、产品编号、产品系列、门票/活动项目和供应商名称；没有明确地名的记录未强行推断。</li>
         <li>地图点位由每个目的地的真实纬度/经度驱动，离线底图为内嵌的新西兰 GeoJSON 海岸线与经纬度网格；路线线条仅表示产品联动关系，不代表实际道路。点击点位弹窗中的 Google Maps 链接，可继续核验具体集合地址。</li>
+        <li>DOC许可候选点优先按 DOC Walking and Tramping Experiences 官方地理图层及 DOC 步道页面核对；许可表中的人数/频次只是带团条件，不代表步道当前开放、最终商业授权或替代现场安全确认。</li>
         <li>建议下一步：先按“距奥克兰/皇后镇的运营半径、客流入口、供应商可得性、季节性、交通成本和现有产品复用度”评分；优先验证 Taupō、Tauranga / Mount Maunganui、Arrowtown / Lake Hayes、Te Anau，再把 West Coast、Nelson、Dunedin 等列入二期全国扩展。</li>
       </ul>
       <div class="mt-4 text-xs text-[#66736d]">查看源 Base：<a target="_blank" href="https://cvg3nuy0ej2.feishu.cn/base/B93sbvf03aH6U9saShgcFjDbnoh">乐悠产品推进计划管理-OTA</a></div>
@@ -137,14 +139,39 @@
       {id:'arrowtown',kind:'opportunity',lat:-44.94,lon:168.83,name:'Arrowtown / Lake Hayes｜皇后镇近郊',count:'近程机会',items:['轻徒步、骑行、湖畔与秋色','亲子 / 银发 / 低强度客群'],query:'Arrowtown New Zealand'},
       {id:'teanau',kind:'opportunity',lat:-45.42,lon:167.72,name:'Te Anau｜米佛承接节点',count:'中程机会',items:['萤火虫洞、湖区、前置住宿','皇后镇—米佛2日游承接'],query:'Te Anau New Zealand'},
       {id:'wanaka-deep',kind:'opportunity',lat:-44.65,lon:169.22,name:'Wanaka / Rob Roy｜徒步升级',count:'集群深化',items:['Rob Roy 难度分层','轻徒步到高山深度体验'],query:'Rob Roy Glacier Track New Zealand'},
-      {id:'aoraki-link',kind:'opportunity',lat:-43.85,lon:170.2,name:'Aoraki / Tekapo｜南岛多日联动',count:'二期联动',items:['库克山冰川 + 蒂卡波观星','适合2—4日，不宜包装成轻松一日'],query:'Aoraki Mount Cook National Park New Zealand'}
+      {id:'aoraki-link',kind:'opportunity',lat:-43.85,lon:170.2,name:'Aoraki / Tekapo｜南岛多日联动',count:'二期联动',items:['库克山冰川 + 蒂卡波观星','适合2—4日，不宜包装成轻松一日'],query:'Aoraki Mount Cook National Park New Zealand'},
+      {id:'permit-wanaka',kind:'permit',lat:-44.648414,lon:168.962307,name:'DOC许可｜Diamond Lake / Wanaka Lookout',count:'15人 · 每日 · 365次/年',items:['Diamond Lake Loop Track','Lake Wanaka Lookout Track','官方DOC步道图层入口点'],query:'Diamond Lake Loop Track New Zealand'},
+      {id:'permit-mouwaho',kind:'permit',lat:-44.556228,lon:169.086850,name:'DOC许可｜Mou Waho',count:'15人 · 每日 · 365次/年',items:['Mou Waho Island Arethusa Pool Track','湖上交通 + 岛屿生态体验','适合瓦纳卡深度一日'],query:'Mou Waho Island Arethusa Pool New Zealand'},
+      {id:'permit-sandfly',kind:'permit',lat:-45.893496,lon:170.639478,name:'DOC许可｜Sandfly Bay',count:'15人 · 每周2团 · 104次/年',items:['Sandymount to Sandfly Bay Track','8月1日—11月1日含关闭条件','奥塔哥海岸野生动物轻徒步'],query:'Sandfly Bay Track Otago New Zealand'},
+      {id:'permit-nugget',kind:'permit',lat:-46.446317,lon:169.810380,name:'DOC许可｜Nugget Point / Tokata',count:'30人 · 每周1团 · 52次/年',items:['Nugget Point Walk','灯塔、海岸地貌与海鸟','可做南岛东海岸联动节点'],query:'Nugget Point Tokata New Zealand'},
+      {id:'permit-wakatipu-east',kind:'permit',lat:-44.937558,lon:168.827705,name:'DOC许可｜Arrowtown / Lake Hayes',count:'15人 · 每周2团或每日',items:['Arrowtown Chinese Settlement Track','Lake Hayes Walkway','皇后镇低门槛历史 + 湖畔产品'],query:'Arrowtown Chinese Settlement New Zealand'},
+      {id:'permit-wakatipu-west',kind:'permit',lat:-45.070021,lon:168.508908,name:'DOC许可｜Bob’s Cove / Twelve Mile',count:'15人 · 每周2团至每日',items:['Bob’s Cove Nature Walk','Twelve Mile Delta to Bob’s Cove Track','湖岸、森林、电影取景与轻户外'],query:'Bob’s Cove Track New Zealand'},
+      {id:'permit-moke',kind:'permit',lat:-45.004613,lon:168.566731,name:'DOC许可｜Moke Lake',count:'15人 · 每周2团 · 104次/年',items:['Moke Lake Loop Track','湖畔轻徒步 / 亲子 / 摄影','皇后镇近郊低强度SKU'],query:'Moke Lake Loop Track New Zealand'},
+      {id:'permit-glenorchy',kind:'permit',lat:-44.715374,lon:168.272376,name:'DOC许可｜Glenorchy / Routeburn',count:'15人 · 每周1—2团',items:['Glenorchy Walkway','Routeburn Nature Walk','湿地、湖泊、鸟类与山景'],query:'Routeburn Nature Walk New Zealand'},
+      {id:'permit-teanau',kind:'permit',lat:-45.426889,lon:167.683023,name:'DOC许可｜Kepler / Te Anau',count:'13—60人 · 每日',items:['Kepler Control Gates—Brod Bay','Kepler Control Gates—Moturau Hut / Shallow Bay','适合皇后镇—米佛前置承接'],query:'Kepler Track Control Gates Brod Bay New Zealand'},
+      {id:'permit-mirror',kind:'permit',lat:-45.028610,lon:168.010830,name:'DOC许可｜Mirror Lakes / Lake Gunn',count:'60人 · 每日 · 365次/年',items:['Mirror Lakes Walk','Lake Gunn Nature Walk','米佛公路沿线轻徒步节点'],query:'Mirror Lakes Milford Road New Zealand'},
+      {id:'permit-chasm',kind:'permit',lat:-44.721629,lon:167.948205,name:'DOC许可｜The Chasm',count:'60人 · 每日 · 365次/年',items:['The Chasm Walk','峡谷瀑布、雨林与米佛线路组合','可作为米佛一日游内容升级'],query:'The Chasm Walk Milford Sound New Zealand'},
+      {id:'permit-rakiura',kind:'permit',lat:-46.899796,lon:168.126195,name:'DOC许可｜Rakiura / Stewart Island',count:'15人 · 每日 · 365次/年',items:['Fuchsia Walk / Raroa Walk','Golden Bay Track、Observation Rock','Ackers Point Track','适合生态、鸟类与小岛慢旅行'],query:'Rakiura Stewart Island Fuchsia Walk New Zealand'},
+      {id:'permit-punakaiki',kind:'permit',lat:-42.113890,lon:171.326110,name:'DOC许可｜Dolomite Point / Punakaiki',count:'15人 · 每日 · 365次/年',items:['Dolomite Point Walk','Pancake Rocks、blowholes与海岸地质','西海岸公路产品节点'],query:'Dolomite Point Pancake Rocks New Zealand'},
+      {id:'permit-hokitika',kind:'permit',lat:-42.956450,lon:171.016368,name:'DOC许可｜Hokitika Gorge',count:'15人 · 每日 · 365次/年',items:['Hokitika Gorge Walk','蓝绿色河谷、森林与吊桥','适合西海岸轻徒步一日/多日线路'],query:'Hokitika Gorge Walk New Zealand'},
+      {id:'permit-aoraki',kind:'permit',lat:-43.719948,lon:170.093918,name:'DOC许可｜Aoraki村区步道群',count:'15人 · 每日或每日2团',items:['Governors Bush Walk','Hooker Valley Track','Kea Point Track','Ngāi Tahu价值需纳入带团解说'],query:'Kea Point Track Aoraki Mount Cook New Zealand'},
+      {id:'permit-tasman',kind:'permit',lat:-43.696851,lon:170.166990,name:'DOC许可｜Tasman Valley',count:'15人 · 每日2团 · 730次/年',items:['Blue Lakes Track','Tasman Glacier View Track','Tasman Lake Track','冰川退缩与冰碛湖知识点明显'],query:'Tasman Glacier View Track New Zealand'},
+      {id:'permit-arthurs',kind:'permit',lat:-42.933495,lon:171.560292,name:'DOC许可｜Arthur’s Pass',count:'15人 · 每周1—3团',items:['Arthur’s Pass Historic Walk','Arthur’s Pass Track','Arthur’s Pass Walking Track','适合基督城—西海岸联动'],query:'Arthur’s Pass Walking Track New Zealand'},
+      {id:'permit-tekapo',kind:'permit',lat:-44.006824,lon:170.481405,name:'DOC许可｜Lake Tekapo',count:'15人 · 每日 · 365次/年',items:['Lake Tekapo Walkway','湖泊、冰川地貌、观星前置体验','可与Aoraki / Pukaki组合'],query:'Lake Tekapo Walkway New Zealand'},
+      {id:'permit-pukaki',kind:'permit',lat:-44.177874,lon:170.167156,name:'DOC许可｜Pukaki Kettlehole',count:'15人 · 每日 · 365次/年',items:['Pukaki Kettlehole Track','终碛地貌、湖景与库克山视线','适合Aoraki—Tekapo多日联动'],query:'Pukaki Kettlehole Track New Zealand'}
     ];
     const routeDefs = [
       {name:'奥克兰—霍比屯—罗托鲁瓦—陶波',ids:['akl','matamata','rotorua','taupo'],secondary:false},
       {name:'奥克兰—怀托摩分支',ids:['akl','waitomo'],secondary:true},
       {name:'皇后镇—格林诺奇—米佛',ids:['queenstown','glenorchy','milford'],secondary:false},
       {name:'皇后镇—Te Anau—米佛',ids:['queenstown','teanau','milford'],secondary:true},
-      {name:'瓦纳卡—Aoraki—蒂卡波',ids:['wanaka','cook','tekapo'],secondary:false}
+      {name:'瓦纳卡—Aoraki—蒂卡波',ids:['wanaka','cook','tekapo'],secondary:false},
+      {name:'DOC许可候选｜Wanaka湖区',ids:['permit-wanaka','permit-mouwaho'],permit:true},
+      {name:'DOC许可候选｜Otago海岸',ids:['permit-sandfly','permit-nugget'],permit:true},
+      {name:'DOC许可候选｜Wakatipu轻徒步带',ids:['permit-wakatipu-east','permit-moke','permit-wakatipu-west','permit-glenorchy'],permit:true},
+      {name:'DOC许可候选｜Te Anau—Milford公路',ids:['permit-teanau','permit-mirror','permit-chasm'],permit:true},
+      {name:'DOC许可候选｜Arthur’s Pass—West Coast',ids:['permit-arthurs','permit-punakaiki','permit-hokitika'],permit:true},
+      {name:'DOC许可候选｜Aoraki—Pukaki—Tekapo',ids:['permit-aoraki','permit-tasman','permit-pukaki','permit-tekapo'],permit:true}
     ];
     const svg=document.getElementById('offlineMap'), grid=document.getElementById('offlineGrid'), land=document.getElementById('offlineLand'), routes=document.getElementById('offlineRoutes'), markerRoot=document.getElementById('offlineMarkers'), tip=document.getElementById('offlineTooltip');
     const bounds={minLon:166.4,maxLon:179.3,minLat:-47.2,maxLat:-34.0,left:58,right:950,top:70,bottom:650};
@@ -156,12 +183,12 @@
     const nzGeoJson={"type":"FeatureCollection","features":[{"type":"Feature","id":"NZL","properties":{"name":"New Zealand"},"geometry":{"type":"MultiPolygon","coordinates":[[[[173.020375,-40.919052],[173.247234,-41.331999],[173.958405,-40.926701],[174.247587,-41.349155],[174.248517,-41.770008],[173.876447,-42.233184],[173.22274,-42.970038],[172.711246,-43.372288],[173.080113,-43.853344],[172.308584,-43.865694],[171.452925,-44.242519],[171.185138,-44.897104],[170.616697,-45.908929],[169.831422,-46.355775],[169.332331,-46.641235],[168.411354,-46.619945],[167.763745,-46.290197],[166.676886,-46.219917],[166.509144,-45.852705],[167.046424,-45.110941],[168.303763,-44.123973],[168.949409,-43.935819],[169.667815,-43.555326],[170.52492,-43.031688],[171.12509,-42.512754],[171.569714,-41.767424],[171.948709,-41.514417],[172.097227,-40.956104],[172.79858,-40.493962],[173.020375,-40.919052]]],[[[174.612009,-36.156397],[175.336616,-37.209098],[175.357596,-36.526194],[175.808887,-36.798942],[175.95849,-37.555382],[176.763195,-37.881253],[177.438813,-37.961248],[178.010354,-37.579825],[178.517094,-37.695373],[178.274731,-38.582813],[177.97046,-39.166343],[177.206993,-39.145776],[176.939981,-39.449736],[177.032946,-39.879943],[176.885824,-40.065978],[176.508017,-40.604808],[176.01244,-41.289624],[175.239567,-41.688308],[175.067898,-41.425895],[174.650973,-41.281821],[175.22763,-40.459236],[174.900157,-39.908933],[173.824047,-39.508854],[173.852262,-39.146602],[174.574802,-38.797683],[174.743474,-38.027808],[174.697017,-37.381129],[174.292028,-36.711092],[174.319004,-36.534824],[173.840997,-36.121981],[173.054171,-35.237125],[172.636005,-34.529107],[173.007042,-34.450662],[173.551298,-35.006183],[174.32939,-35.265496],[174.612009,-36.156397]]]]}}]};
     nzGeoJson.features[0].geometry.coordinates.forEach(polygon=>polygon.forEach(ring=>{const d=ring.map(([lon,lat],i)=>{const p=project(lat,lon);return `${i?'L':'M'}${p.x.toFixed(2)} ${p.y.toFixed(2)}`}).join(' ')+' Z';land.appendChild(svgEl('path',{class:'offline-land',d}))}));
     const markerById=Object.fromEntries(markers.map(m=>[m.id,m]));
-    routeDefs.forEach(route=>{const line=svgEl('path',{class:`offline-route${route.secondary?' secondary':''}`,d:linePath(route.ids.map(id=>markerById[id]))});line.dataset.kind='route';line.appendChild(svgEl('title')).textContent=`${route.name}（产品联动示意，不是道路导航）`;routes.appendChild(line)});
+    routeDefs.forEach(route=>{const line=svgEl('path',{class:`offline-route${route.secondary?' secondary':''}${route.permit?' permit':''}`,d:linePath(route.ids.map(id=>markerById[id]))});line.dataset.kind=route.permit?'permit-route':'route';line.appendChild(svgEl('title')).textContent=`${route.name}（产品联动示意，不是道路导航）`;routes.appendChild(line)});
     function mapsUrl(q){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q)}
     function showTip(e,m){tip.innerHTML=`<strong>${m.name}</strong><div>${m.count}</div><div>${m.items.join(' · ')}</div><div style="margin-top:6px;color:#66736d">坐标：${m.lat.toFixed(4)}, ${m.lon.toFixed(4)}</div><div style="margin-top:7px"><a target="_blank" rel="noopener" href="${mapsUrl(m.query)}">打开 Google Maps 核验点位</a></div><div style="margin-top:7px;text-align:right"><button type="button" onclick="document.getElementById('offlineTooltip').style.display='none'">关闭</button></div>`;tip.style.display='block';tip.style.left=Math.min(e.clientX+14,window.innerWidth-330)+'px';tip.style.top=Math.min(e.clientY+14,window.innerHeight-190)+'px'}
-    markers.forEach(m=>{const p=project(m.lat,m.lon),g=svgEl('g',{class:`offline-marker ${m.kind}`});g.dataset.kind=m.kind;g.dataset.id=m.id;g.appendChild(svgEl('circle',{cx:p.x,cy:p.y,r:m.kind==='opportunity'?8:7}));const text=svgEl('text',{x:p.x+10,y:p.y+4});text.textContent=m.name;g.appendChild(text);g.addEventListener('click',e=>{e.stopPropagation();showTip(e,m)});markerRoot.appendChild(g)});
+    markers.forEach(m=>{const p=project(m.lat,m.lon),g=svgEl('g',{class:`offline-marker ${m.kind}`});g.dataset.kind=m.kind;g.dataset.id=m.id;g.appendChild(svgEl('circle',{cx:p.x,cy:p.y,r:m.kind==='current'?7:8}));const text=svgEl('text',{x:p.x+10,y:p.y+4});text.textContent=m.name;g.appendChild(text);g.addEventListener('click',e=>{e.stopPropagation();showTip(e,m)});markerRoot.appendChild(g)});
     svg.addEventListener('click',()=>{tip.style.display='none'});
-    document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const filter=btn.dataset.filter;document.querySelectorAll('.offline-marker').forEach(el=>el.style.display=filter==='all'||el.dataset.kind===filter?'':'none');document.querySelectorAll('.offline-route').forEach(el=>el.style.display=filter==='all'?'':'none')}));
+    document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const filter=btn.dataset.filter;document.querySelectorAll('.offline-marker').forEach(el=>el.style.display=filter==='all'||el.dataset.kind===filter?'':'none');document.querySelectorAll('.offline-route').forEach(el=>el.style.display=filter==='all'||(filter==='permit'&&el.dataset.kind==='permit-route')?'':'none')}));
   </script>
 </body>
 </html>
