@@ -139,13 +139,27 @@
       {name:'皇后镇—Te Anau—米佛',ids:['queenstown','teanau','milford'],secondary:true},
       {name:'瓦纳卡—Aoraki—蒂卡波',ids:['wanaka','cook','tekapo'],secondary:false}
     ];
-    const map = L.map('leafletMap', {scrollWheelZoom:false, zoomControl:true});
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:18, attribution:'© OpenStreetMap contributors'}).addTo(map);
+    const mapElement = document.getElementById('leafletMap');
+    const map = L.map(mapElement, {scrollWheelZoom:false, zoomControl:true, preferCanvas:true});
+    const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:18, attribution:'© OpenStreetMap contributors', updateWhenIdle:true, keepBuffer:2}).addTo(map);
     const markerLayers = {current:L.layerGroup().addTo(map), opportunity:L.layerGroup().addTo(map)};
     const routeLayer = L.layerGroup().addTo(map);
     const markerById = Object.fromEntries(markers.map(m=>[m.id,m]));
     const allPoints = markers.map(m=>[m.lat,m.lon]);
-    map.fitBounds(allPoints, {padding:[24,24]});
+    const allBounds = L.latLngBounds(allPoints);
+    let initialFitDone = false;
+    function stabilizeMap(){
+      map.invalidateSize({pan:false, animate:false});
+      if(!initialFitDone){map.fitBounds(allBounds, {padding:[24,24], animate:false});initialFitDone=true;}
+    }
+    map.whenReady(()=>{
+      stabilizeMap();
+      requestAnimationFrame(stabilizeMap);
+      setTimeout(stabilizeMap,250);
+      setTimeout(stabilizeMap,1000);
+    });
+    if(window.ResizeObserver){new ResizeObserver(()=>stabilizeMap()).observe(mapElement)}
+    window.addEventListener('resize',stabilizeMap);
     function mapsUrl(q){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q)}
     markers.forEach(m=>{
       const color = m.kind==='current' ? '#4c9b8c' : '#d96b3d';
