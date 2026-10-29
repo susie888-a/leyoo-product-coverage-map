@@ -22,10 +22,9 @@
     .metric{padding:18px 20px}.metric strong{display:block;font-size:30px;letter-spacing:-.04em}.metric span{font-size:12px;color:var(--muted)}
     .legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted)}.legend i{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px}.legend .current{background:var(--teal)}.legend .opportunity{background:var(--orange)}.legend .route{display:inline-block;width:28px;height:0;border-top:2px dashed #78988d;margin-right:5px;vertical-align:middle}
     .map-card{padding:14px;overflow:hidden}.map-wrap{background:#e8eee9;border-radius:18px;position:relative;min-height:660px;overflow:hidden}
-    .map-wrap::after{content:"真实经纬度点位 · OpenStreetMap 底图 · 点击点位可打开 Google Maps";position:absolute;right:18px;bottom:12px;z-index:500;color:rgba(21,35,31,.62);font-size:10px;letter-spacing:.04em;background:rgba(251,250,246,.82);padding:4px 7px;border-radius:6px}
-    #leafletMap{width:100%;height:660px;border-radius:18px;overflow:hidden;background:#e8eee9}
-    .leaflet-container{font-family:Inter,"Noto Sans SC","PingFang SC",system-ui,sans-serif;background:#e8eee9}.leaflet-popup-content-wrapper{border-radius:12px}.leaflet-popup-content{font-size:12px;line-height:1.55;margin:12px 14px}.leaflet-popup-content strong{display:block;color:var(--green);font-size:14px;margin-bottom:4px}.leaflet-popup-content a{color:var(--green);text-decoration:underline}.leaflet-control-attribution{font-size:9px}
-    .leaflet-dot-label{background:var(--paper);border:1px solid rgba(21,35,31,.14);border-radius:7px;color:#173c31;font-size:10px;font-weight:800;padding:3px 5px;box-shadow:0 2px 8px rgba(22,42,35,.14);white-space:nowrap}.leaflet-dot-label::before{display:none}.leaflet-dot-label.current{border-left:3px solid var(--teal)}.leaflet-dot-label.opportunity{border-left:3px solid var(--orange)}
+    .map-wrap::after{content:"离线真实经纬度投影 · 不依赖外部地图瓦片 · 点击点位查看 Google Maps";position:absolute;right:18px;bottom:12px;z-index:5;color:rgba(21,35,31,.62);font-size:10px;letter-spacing:.04em;background:rgba(251,250,246,.86);padding:4px 7px;border-radius:6px}
+    #offlineMap{width:100%;height:660px;border-radius:18px;display:block;background:#e8eee9}
+    .offline-bg{fill:#e8eee9}.offline-land{fill:#d7e4dc;stroke:#88a99c;stroke-width:1.4}.offline-grid{stroke:#b8cec3;stroke-width:1;opacity:.62}.offline-grid-label{font-size:11px;fill:#66857a}.offline-title{font-size:14px;font-weight:800;fill:#315f51}.offline-note{font-size:11px;fill:#66857a}.offline-route{fill:none;stroke:#6d998d;stroke-width:2.2;stroke-dasharray:8 7;opacity:.82}.offline-route.secondary{stroke:#a4b9ae;stroke-width:1.7;opacity:.78}.offline-marker{cursor:pointer}.offline-marker circle{stroke:#fff;stroke-width:2.5}.offline-marker.current circle{fill:var(--teal)}.offline-marker.opportunity circle{fill:var(--orange)}.offline-marker text{font-size:10px;font-weight:800;fill:#173c31;paint-order:stroke;stroke:#f7f4ea;stroke-width:3px;stroke-linejoin:round}.tooltip{pointer-events:auto}
     .side{padding:22px}.side h2{font-size:20px;letter-spacing:-.03em;margin:0 0 6px}.side p{font-size:13px;line-height:1.65;color:var(--muted)}
     .cluster{padding:14px 0;border-top:1px solid var(--line)}.cluster:first-of-type{border-top:0}.cluster-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.cluster h3{margin:0;font-size:14px}.cluster-count{font-size:11px;background:#e6f0eb;color:var(--green);padding:4px 8px;border-radius:999px;font-weight:750}.cluster ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:12px;line-height:1.65}.cluster a,.source a{color:var(--green);text-decoration:underline;text-underline-offset:3px}
     .op-card{padding:16px 18px;border-left:4px solid var(--orange);background:#fff8f0;border-radius:16px;margin-top:12px}.op-card h3{margin:0 0 4px;font-size:15px}.op-card p{margin:0;color:#6c5c4f;font-size:12px;line-height:1.6}.op-card a{display:inline-block;margin-top:8px;color:#98431f;font-size:12px;text-decoration:underline}
@@ -58,7 +57,16 @@
     <section class="grid-main grid grid-cols-1 lg:grid-cols-[minmax(0,1.55fr)_minmax(330px,.75fr)] gap-4">
       <div class="cardx map-card">
         <div class="map-wrap">
-          <div id="leafletMap" role="img" aria-label="基于真实经纬度的新西兰乐悠产品覆盖地图"></div>
+          <svg id="offlineMap" viewBox="0 0 1000 700" role="img" aria-label="基于真实经纬度的离线新西兰乐悠产品覆盖地图">
+            <rect class="offline-bg" x="0" y="0" width="1000" height="700"/>
+            <g id="offlineGrid"></g>
+            <g id="offlineLand"></g>
+            <g id="offlineRoutes"></g>
+            <g id="offlineMarkers"></g>
+            <text class="offline-title" x="34" y="34">新西兰产品覆盖｜离线经纬度投影</text>
+            <text class="offline-note" x="34" y="54">点位按真实纬度 / 经度计算；虚线仅表示产品联动，不代表道路导航</text>
+          </svg>
+          <div id="offlineTooltip" class="tooltip"></div>
         </div>
       </div>
 
@@ -101,13 +109,12 @@
       <ul>
         <li>数据来源：飞书 Base「乐悠产品推进计划管理-OTA」的「产品任务进度」表（33条）和「产品门票信息」表（47条）。</li>
         <li>区域归类依据：产品名称、产品编号、产品系列、门票/活动项目和供应商名称；没有明确地名的记录未强行推断。</li>
-        <li>地图点位由每个目的地的真实纬度/经度驱动，底图为 OpenStreetMap；路线线条仅表示产品联动关系，不代表实际道路。点击点位弹窗中的 Google Maps 链接，可继续核验具体集合地址。</li>
+        <li>地图点位由每个目的地的真实纬度/经度驱动，离线底图为内嵌的新西兰 GeoJSON 海岸线与经纬度网格；路线线条仅表示产品联动关系，不代表实际道路。点击点位弹窗中的 Google Maps 链接，可继续核验具体集合地址。</li>
         <li>建议下一步：先按“距奥克兰/皇后镇的运营半径、客流入口、供应商可得性、季节性、交通成本和现有产品复用度”评分；优先验证 Taupō、Tauranga / Mount Maunganui、Arrowtown / Lake Hayes、Te Anau，再把 West Coast、Nelson、Dunedin 等列入二期全国扩展。</li>
       </ul>
       <div class="mt-4 text-xs text-[#66736d]">查看源 Base：<a target="_blank" href="https://cvg3nuy0ej2.feishu.cn/base/B93sbvf03aH6U9saShgcFjDbnoh">乐悠产品推进计划管理-OTA</a></div>
     </section>
   </main>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const markers = [
       {id:'akl',kind:'current',lat:-36.8485,lon:174.7633,name:'奥克兰及周边',count:'5组产品',items:['你好奥克兰一日游','寻味激流岛一日私享包车','西海岸探索一日游','中土奇境一日游/包车','Auckland Museum'],query:'Auckland New Zealand'},
@@ -139,50 +146,22 @@
       {name:'皇后镇—Te Anau—米佛',ids:['queenstown','teanau','milford'],secondary:true},
       {name:'瓦纳卡—Aoraki—蒂卡波',ids:['wanaka','cook','tekapo'],secondary:false}
     ];
-    const mapElement = document.getElementById('leafletMap');
-    const map = L.map(mapElement, {scrollWheelZoom:false, zoomControl:true, preferCanvas:true});
-    const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:18, attribution:'© OpenStreetMap contributors', updateWhenIdle:true, keepBuffer:2}).addTo(map);
-    const markerLayers = {current:L.layerGroup().addTo(map), opportunity:L.layerGroup().addTo(map)};
-    const routeLayer = L.layerGroup().addTo(map);
-    const markerById = Object.fromEntries(markers.map(m=>[m.id,m]));
-    const allPoints = markers.map(m=>[m.lat,m.lon]);
-    const allBounds = L.latLngBounds(allPoints);
-    let initialFitDone = false;
-    function stabilizeMap(){
-      map.invalidateSize({pan:false, animate:false});
-      if(!initialFitDone){map.fitBounds(allBounds, {padding:[24,24], animate:false});initialFitDone=true;}
-    }
-    map.whenReady(()=>{
-      stabilizeMap();
-      requestAnimationFrame(stabilizeMap);
-      setTimeout(stabilizeMap,250);
-      setTimeout(stabilizeMap,1000);
-    });
-    if(window.ResizeObserver){new ResizeObserver(()=>stabilizeMap()).observe(mapElement)}
-    window.addEventListener('resize',stabilizeMap);
+    const svg=document.getElementById('offlineMap'), grid=document.getElementById('offlineGrid'), land=document.getElementById('offlineLand'), routes=document.getElementById('offlineRoutes'), markerRoot=document.getElementById('offlineMarkers'), tip=document.getElementById('offlineTooltip');
+    const bounds={minLon:166.4,maxLon:179.3,minLat:-47.2,maxLat:-34.0,left:58,right:950,top:70,bottom:650};
+    function project(lat,lon){return {x:bounds.left+(lon-bounds.minLon)/(bounds.maxLon-bounds.minLon)*(bounds.right-bounds.left),y:bounds.top+(bounds.maxLat-lat)/(bounds.maxLat-bounds.minLat)*(bounds.bottom-bounds.top)}}
+    function svgEl(tag,attrs){const el=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.entries(attrs||{}).forEach(([k,v])=>el.setAttribute(k,v));return el}
+    function linePath(points){return points.map((p,i)=>{const q=project(p.lat,p.lon);return `${i?'L':'M'}${q.x.toFixed(2)} ${q.y.toFixed(2)}`}).join(' ')}
+    for(let lon=168;lon<=178;lon+=2){const p=project(-34,lon);grid.appendChild(svgEl('line',{class:'offline-grid',x1:p.x,y1:bounds.top,x2:p.x,y2:bounds.bottom}));const t=svgEl('text',{class:'offline-grid-label',x:p.x+4,y:bounds.bottom+22});t.textContent=`${lon}°E`;grid.appendChild(t)}
+    for(let lat=-36;lat>=-46;lat-=2){const p=project(lat,166.4);grid.appendChild(svgEl('line',{class:'offline-grid',x1:bounds.left,y1:p.y,x2:bounds.right,y2:p.y}));const t=svgEl('text',{class:'offline-grid-label',x:bounds.left-6,y:p.y-5,'text-anchor':'end'});t.textContent=`${Math.abs(lat)}°S`;grid.appendChild(t)}
+    const nzGeoJson={"type":"FeatureCollection","features":[{"type":"Feature","id":"NZL","properties":{"name":"New Zealand"},"geometry":{"type":"MultiPolygon","coordinates":[[[[173.020375,-40.919052],[173.247234,-41.331999],[173.958405,-40.926701],[174.247587,-41.349155],[174.248517,-41.770008],[173.876447,-42.233184],[173.22274,-42.970038],[172.711246,-43.372288],[173.080113,-43.853344],[172.308584,-43.865694],[171.452925,-44.242519],[171.185138,-44.897104],[170.616697,-45.908929],[169.831422,-46.355775],[169.332331,-46.641235],[168.411354,-46.619945],[167.763745,-46.290197],[166.676886,-46.219917],[166.509144,-45.852705],[167.046424,-45.110941],[168.303763,-44.123973],[168.949409,-43.935819],[169.667815,-43.555326],[170.52492,-43.031688],[171.12509,-42.512754],[171.569714,-41.767424],[171.948709,-41.514417],[172.097227,-40.956104],[172.79858,-40.493962],[173.020375,-40.919052]]],[[[174.612009,-36.156397],[175.336616,-37.209098],[175.357596,-36.526194],[175.808887,-36.798942],[175.95849,-37.555382],[176.763195,-37.881253],[177.438813,-37.961248],[178.010354,-37.579825],[178.517094,-37.695373],[178.274731,-38.582813],[177.97046,-39.166343],[177.206993,-39.145776],[176.939981,-39.449736],[177.032946,-39.879943],[176.885824,-40.065978],[176.508017,-40.604808],[176.01244,-41.289624],[175.239567,-41.688308],[175.067898,-41.425895],[174.650973,-41.281821],[175.22763,-40.459236],[174.900157,-39.908933],[173.824047,-39.508854],[173.852262,-39.146602],[174.574802,-38.797683],[174.743474,-38.027808],[174.697017,-37.381129],[174.292028,-36.711092],[174.319004,-36.534824],[173.840997,-36.121981],[173.054171,-35.237125],[172.636005,-34.529107],[173.007042,-34.450662],[173.551298,-35.006183],[174.32939,-35.265496],[174.612009,-36.156397]]]]}}]};
+    nzGeoJson.features[0].geometry.coordinates.forEach(polygon=>polygon.forEach(ring=>{const d=ring.map(([lon,lat],i)=>{const p=project(lat,lon);return `${i?'L':'M'}${p.x.toFixed(2)} ${p.y.toFixed(2)}`}).join(' ')+' Z';land.appendChild(svgEl('path',{class:'offline-land',d}))}));
+    const markerById=Object.fromEntries(markers.map(m=>[m.id,m]));
+    routeDefs.forEach(route=>{const line=svgEl('path',{class:`offline-route${route.secondary?' secondary':''}`,d:linePath(route.ids.map(id=>markerById[id]))});line.dataset.kind='route';line.appendChild(svgEl('title')).textContent=`${route.name}（产品联动示意，不是道路导航）`;routes.appendChild(line)});
     function mapsUrl(q){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q)}
-    markers.forEach(m=>{
-      const color = m.kind==='current' ? '#4c9b8c' : '#d96b3d';
-      const marker = L.circleMarker([m.lat,m.lon], {radius:m.kind==='opportunity'?8:7, color:'#fff', weight:2.5, fillColor:color, fillOpacity:1});
-      marker.bindTooltip(m.name, {direction:'top', offset:[0,-8], className:'leaflet-dot-label '+m.kind});
-      marker.bindPopup(`<strong>${m.name}</strong><div>${m.count}</div><div>${m.items.join(' · ')}</div><div style="margin-top:6px;color:#66736d">坐标：${m.lat.toFixed(4)}, ${m.lon.toFixed(4)}</div><div style="margin-top:7px"><a target="_blank" rel="noopener" href="${mapsUrl(m.query)}">打开 Google Maps 核验点位</a></div>`);
-      markerLayers[m.kind].addLayer(marker);
-      m.layer = marker;
-    });
-    routeDefs.forEach(route=>{
-      const points = route.ids.map(id=>{const m=markerById[id];return [m.lat,m.lon]});
-      const line = L.polyline(points, {color:route.secondary?'#a4b9ae':'#6d998d', weight:route.secondary?2:2.5, dashArray:'7 6', opacity:route.secondary?.75:.85});
-      line.bindTooltip(`${route.name}（产品联动示意，不是道路导航）`, {sticky:true});
-      routeLayer.addLayer(line);
-    });
-    document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{
-      document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter=btn.dataset.filter;
-      Object.entries(markerLayers).forEach(([kind,layer])=>{
-        if(filter==='all'||filter===kind){if(!map.hasLayer(layer))layer.addTo(map)}else if(map.hasLayer(layer)){map.removeLayer(layer)}
-      });
-    }));
+    function showTip(e,m){tip.innerHTML=`<strong>${m.name}</strong><div>${m.count}</div><div>${m.items.join(' · ')}</div><div style="margin-top:6px;color:#66736d">坐标：${m.lat.toFixed(4)}, ${m.lon.toFixed(4)}</div><div style="margin-top:7px"><a target="_blank" rel="noopener" href="${mapsUrl(m.query)}">打开 Google Maps 核验点位</a></div><div style="margin-top:7px;text-align:right"><button type="button" onclick="document.getElementById('offlineTooltip').style.display='none'">关闭</button></div>`;tip.style.display='block';tip.style.left=Math.min(e.clientX+14,window.innerWidth-330)+'px';tip.style.top=Math.min(e.clientY+14,window.innerHeight-190)+'px'}
+    markers.forEach(m=>{const p=project(m.lat,m.lon),g=svgEl('g',{class:`offline-marker ${m.kind}`});g.dataset.kind=m.kind;g.dataset.id=m.id;g.appendChild(svgEl('circle',{cx:p.x,cy:p.y,r:m.kind==='opportunity'?8:7}));const text=svgEl('text',{x:p.x+10,y:p.y+4});text.textContent=m.name;g.appendChild(text);g.addEventListener('click',e=>{e.stopPropagation();showTip(e,m)});markerRoot.appendChild(g)});
+    svg.addEventListener('click',()=>{tip.style.display='none'});
+    document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const filter=btn.dataset.filter;document.querySelectorAll('.offline-marker').forEach(el=>el.style.display=filter==='all'||el.dataset.kind===filter?'':'none');document.querySelectorAll('.offline-route').forEach(el=>el.style.display=filter==='all'?'':'none')}));
   </script>
 </body>
 </html>
