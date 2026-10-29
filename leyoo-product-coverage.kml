@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>乐悠 OTA 产品覆盖与机会区</name>
+    <description>基于飞书“乐悠产品推进计划管理-OTA”产品任务与门票/活动记录整理。战略口径为奥克兰与皇后镇双运营基点：绿色为现有产品覆盖，橙色为基点辐射机会。点位为区域示意，导入 Google My Maps 后可继续调整；全国其他区域属于二期扩展，不代表近期一日游优先级。</description>
+    <Style id="current"><IconStyle><color>ff8c9b78</color><scale>1.15</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/grn-circle.png</href></Icon></IconStyle><LabelStyle><scale>0.85</scale></LabelStyle></Style>
+    <Style id="opportunity"><IconStyle><color>ff3d6bd9</color><scale>1.15</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/orange-circle.png</href></Icon></IconStyle><LabelStyle><scale>0.85</scale></LabelStyle></Style>
+    <Style id="route"><LineStyle><color>ff8d996d</color><width>3</width></LineStyle></Style>
+    <Folder><name>现有产品覆盖</name>
+      <Placemark><name>奥克兰及周边</name><styleUrl>#current</styleUrl><description><![CDATA[你好奥克兰、寻味激流岛、西海岸探索、中土奇境、Auckland Museum]]></description><Point><coordinates>174.7633,-36.8485,0</coordinates></Point></Placemark>
+      <Placemark><name>Waiheke / 激流岛</name><styleUrl>#current</styleUrl><Point><coordinates>175.039,-36.787,0</coordinates></Point></Placemark>
+      <Placemark><name>科罗曼德</name><styleUrl>#current</styleUrl><Point><coordinates>175.506,-36.761,0</coordinates></Point></Placemark>
+      <Placemark><name>怀托摩</name><styleUrl>#current</styleUrl><Point><coordinates>175.104,-38.261,0</coordinates></Point></Placemark>
+      <Placemark><name>霍比屯 / Matamata</name><styleUrl>#current</styleUrl><Point><coordinates>175.682,-37.871,0</coordinates></Point></Placemark>
+      <Placemark><name>罗托鲁瓦</name><styleUrl>#current</styleUrl><description><![CDATA[丛林飞跃、Wai-O-Tapu、Te Puia、Mount Tarawera、Waimangu、北岛3日游]]></description><Point><coordinates>176.2497,-38.1368,0</coordinates></Point></Placemark>
+      <Placemark><name>陶波 Taupō｜北岛3日游已覆盖</name><styleUrl>#current</styleUrl><description><![CDATA[北岛3日游已覆盖陶波湖区；下一步可拆出火山谷、胡卡瀑布、温泉与湖区轻户外独立 SKU]]></description><Point><coordinates>176.084,-38.6857,0</coordinates></Point></Placemark>
+      <Placemark><name>蒂卡波</name><styleUrl>#current</styleUrl><Point><coordinates>170.478,-44.004,0</coordinates></Point></Placemark>
+      <Placemark><name>库克山</name><styleUrl>#current</styleUrl><Point><coordinates>170.096,-43.734,0</coordinates></Point></Placemark>
+      <Placemark><name>瓦纳卡 / Rob Roy / Mou Waho / Cardrona</name><styleUrl>#current</styleUrl><description><![CDATA[Rob Roy 悬冰川、Mou Waho 湖心岛、Cardrona 射击、生态探索]]></description><Point><coordinates>169.13,-44.70,0</coordinates></Point></Placemark>
+      <Placemark><name>皇后镇</name><styleUrl>#current</styleUrl><description><![CDATA[Heliworks Queenstown、复古一日游、米佛峡湾舒享/包车]]></description><Point><coordinates>168.6626,-45.0312,0</coordinates></Point></Placemark>
+      <Placemark><name>格林诺奇 / Earnslaw Burn</name><styleUrl>#current</styleUrl><description><![CDATA[Heliworks Glenorchy、Earnslaw Burn、Dart River Funyaks]]></description><Point><coordinates>168.38,-44.85,0</coordinates></Point></Placemark>
+      <Placemark><name>米尔福德峡湾</name><styleUrl>#current</styleUrl><Point><coordinates>167.925,-44.671,0</coordinates></Point></Placemark>
+      <Placemark><name>阿卡罗阿</name><styleUrl>#current</styleUrl><description><![CDATA[赫氏海豚巡游、Akaroa Nature Cruise]]></description><Point><coordinates>172.97,-43.804,0</coordinates></Point></Placemark>
+    </Folder>
+    <Folder><name>基点辐射机会（优先级）</name>
+      <Placemark><name>Tauranga / Mount Maunganui｜奥克兰东南扩展</name><styleUrl>#opportunity</styleUrl><description><![CDATA[海岸、海滩、轻徒步、毛利文化与丰盛湾周末小团]]></description><Point><coordinates>176.17,-37.64,0</coordinates></Point></Placemark>
+      <Placemark><name>Bay of Islands / Cape Reinga｜奥克兰北延</name><styleUrl>#opportunity</styleUrl><description><![CDATA[二期2—3日线路：海豚、岛屿、毛利文化、九十英里海滩]]></description><Point><coordinates>174.08,-35.25,0</coordinates></Point></Placemark>
+      <Placemark><name>Arrowtown / Lake Hayes｜皇后镇近郊</name><styleUrl>#opportunity</styleUrl><description><![CDATA[轻徒步、骑行、湖畔与秋色；亲子、银发和低强度客群]]></description><Point><coordinates>168.83,-44.94,0</coordinates></Point></Placemark>
+      <Placemark><name>Te Anau｜皇后镇—米佛承接节点</name><styleUrl>#opportunity</styleUrl><description><![CDATA[萤火虫洞、湖区、前置住宿与轻徒步；适合皇后镇—米佛2日游]]></description><Point><coordinates>167.72,-45.42,0</coordinates></Point></Placemark>
+      <Placemark><name>Wanaka / Rob Roy｜徒步升级</name><styleUrl>#opportunity</styleUrl><description><![CDATA[从轻徒步到高山深度体验的难度分层，深化皇后镇南岛户外辐射带]]></description><Point><coordinates>169.22,-44.65,0</coordinates></Point></Placemark>
+      <Placemark><name>Aoraki / Tekapo｜南岛多日联动</name><styleUrl>#opportunity</styleUrl><description><![CDATA[库克山冰川与蒂卡波观星，适合2—4日联动，不宜包装成轻松一日游]]></description><Point><coordinates>170.2,-43.85,0</coordinates></Point></Placemark>
+    </Folder>
+    <Folder><name>双基点代表性辐射路线</name>
+      <Placemark><name>奥克兰基点：奥克兰—霍比屯—罗托鲁瓦—陶波</name><styleUrl>#route</styleUrl><LineString><tessellate>1</tessellate><coordinates>174.7633,-36.8485,0 175.6806,-37.8579,0 176.2497,-38.1368,0 176.084,-38.6857,0</coordinates></LineString></Placemark>
+      <Placemark><name>皇后镇基点：皇后镇—格林诺奇—米尔福德</name><styleUrl>#route</styleUrl><LineString><tessellate>1</tessellate><coordinates>168.6626,-45.0312,0 168.38,-44.85,0 167.925,-44.671,0</coordinates></LineString></Placemark>
+      <Placemark><name>皇后镇基点：皇后镇—Te Anau—米尔福德</name><styleUrl>#route</styleUrl><LineString><tessellate>1</tessellate><coordinates>168.6626,-45.0312,0 167.72,-45.42,0 167.925,-44.671,0</coordinates></LineString></Placemark>
+      <Placemark><name>皇后镇南岛多日联动：瓦纳卡—库克山—蒂卡波</name><styleUrl>#route</styleUrl><LineString><tessellate>1</tessellate><coordinates>169.13,-44.70,0 170.096,-43.734,0 170.478,-44.004,0</coordinates></LineString></Placemark>
+    </Folder>
+  </Document>
+</kml>
